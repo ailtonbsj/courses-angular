@@ -1,0 +1,27 @@
+{
+  "name": "course-angularjs",
+  "version": "1.0.0",
+  "description": "Samples of AngularJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ailtonbsj/course-angularjs.git"
+  },
+  "keywords": [
+    "angular",
+    "js"
+  ],
+  "author": "ailtonbsj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ailtonbsj/course-angularjs/issues"
+  },
+  "homepage": "https://github.com/ailtonbsj/course-angularjs#readme",
+  "dependencies": {
+    "angular": "=1.6.6",
+    "bootstrap": "=3.3.7"
+  }
+}

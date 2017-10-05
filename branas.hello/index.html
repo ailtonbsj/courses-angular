@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="helloWorld">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+    <script src="../node_modules/angular/angular.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      angular.module("helloWorld", []);
+      angular.module("helloWorld")
+      .controller("helloWorldCtrl", function($scope){
+        $scope.message = "Hello World!";
+      });
+    </script>
+  </head>
+  <body ng-controller="helloWorldCtrl">
+    {{message}}
+  </body>
+</html>
