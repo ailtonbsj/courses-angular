@@ -1,0 +1,24 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Caneta BIC Preta",
+      "price": 5.89
+    },
+    {
+      "name": "iPhone 8",
+      "price": "1600.04",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Samsung S20+",
+      "price": 5000.89
+    },
+    {
+      "name": "Geladeira",
+      "price": "1874.05",
+      "id": 4
+    }
+  ]
+}
