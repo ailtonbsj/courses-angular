@@ -2,23 +2,28 @@
   "products": [
     {
       "name": "Geladeira",
-      "price": "1700.02",
+      "price": "17202",
       "id": 1
     },
     {
       "name": "Iphone 8",
-      "price": "1600.04",
+      "price": "1608.04",
       "id": 2
     },
     {
-      "name": "Test",
-      "price": null,
+      "name": "Torradeira",
+      "price": "300",
       "id": 3
     },
     {
       "name": "Notebook",
       "price": "900.99",
       "id": 4
+    },
+    {
+      "name": "XXX",
+      "price": "777",
+      "id": 5
     }
   ]
 }

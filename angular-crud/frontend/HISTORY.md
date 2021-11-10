@@ -39,4 +39,13 @@ ng g c components/product/product-read
 
 # Generate table with schematics
 ng generate @angular/material:table components/product/product-read2
+
+# Generate ProductUpdate component
+ng g c components/product/product-update
+
+# Generate ProductDelete component
+ng g c components/product/product-delete
+
+# Generate Header service
+ng g s components/template/header/header
 ```

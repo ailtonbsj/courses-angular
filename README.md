@@ -6,10 +6,19 @@
 
 This is the source code of all projects I did in courses of Angular. This courses are videos in Udemy, books, youtube and tutoriais.
 
-## Angular 9 Essencial [2020]
+## Introdução ao Angular 8
 ![](https://img.shields.io/badge/status-in%20progress-blue)
 
 > Folder: 
+
+An online course of Angular 8 from [Digital Innovation One](https://web.dio.me/course/introducao-ao-angular-8/learning/2d97a376-c570-45e3-9f32-f756f98804ab).
+
+Creator: Wesllhey Holanda
+
+## Angular 9 Essencial [2020]
+![](https://img.shields.io/badge/status-completed-brightgreen)
+
+> Folder: angular-crud
 
 An online course of Angular 9 from [Udemy](https://www.udemy.com/course/angular-9-essencial/).
 
