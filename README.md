@@ -9,7 +9,7 @@ This is the source code of all projects I did in courses of Angular. This course
 ## Introdução ao Angular 8
 ![](https://img.shields.io/badge/status-in%20progress-blue)
 
-> Folder: 
+> Folder: course-manager
 
 An online course of Angular 8 from [Digital Innovation One](https://web.dio.me/course/introducao-ao-angular-8/learning/2d97a376-c570-45e3-9f32-f756f98804ab).
 
