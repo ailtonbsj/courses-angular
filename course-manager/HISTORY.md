@@ -10,4 +10,10 @@ ng new course-manager
 
 # Serve project on port 4200
 ng serve
+
+# Bootstrap
+npm i bootstrap
+
+# Font Awesome
+npm i font-awesome
 ```
