@@ -1,13 +1,13 @@
 # Courses of Angular
 
-<p align="center"> 
+<p align="center">
 <img src=".github/logo.png">
 </p>
 
 This is the source code of all projects I did in courses of Angular. This courses are videos in Udemy, books, youtube and tutoriais.
 
 ## Introdução ao Angular 8
-![](https://img.shields.io/badge/status-in%20progress-blue)
+![](https://img.shields.io/badge/status-completed-brightgreen)
 
 > Folder: course-manager
 

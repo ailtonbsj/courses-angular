@@ -27,6 +27,16 @@ export class CourseListComponent implements OnInit {
         })
     }
 
+    deleteById(courseId: number): void {
+        this.courseService.deleteById(courseId).subscribe({
+            next: resp => {
+                console.log('DELETED:', resp)
+                this.retrieveAll()
+            },
+            error: err => console.log('ERROR', err)
+        })
+    }
+
     set filter(value: string) {
         this._filterBy = value;
         this.filteredCourses = this._courses.filter(
