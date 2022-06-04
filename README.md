@@ -6,6 +6,15 @@
 
 This is the source code of all projects I did in courses of Angular. This courses are videos in Udemy, books, youtube and tutoriais.
 
+## Angular 2
+![](https://img.shields.io/badge/status-in%20progress-blue)
+
+> Folder: loiane-angular
+
+An online course of Angular 2 from [Loiane Training](https://loiane.training/cursos).
+
+Creator: Loiane Groner
+
 ## Introdução ao Angular 8
 ![](https://img.shields.io/badge/status-completed-brightgreen)
 
