@@ -15,4 +15,7 @@ ng g c cursos/curso-detalhe
 
 # Cursos service
 ng g s cursos/cursos
+
+# Data binding component
+ng g c data-binding
 ```
