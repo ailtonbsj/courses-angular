@@ -1,7 +1,54 @@
-<h1>Data binding</h1>
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+  crossorigin="anonymous"
+></script>
+
+<h1>3. Class and style binding</h1>
+
+<select #selected (change)="(0)">
+  <option value="alert-success">Success</option>
+  <option value="alert-danger">Danger</option>
+  <option value="alert-warning">Warning</option>
+</select>
+
+<div
+  class="alert"
+  [class.alert-success]="selected.value == 'alert-success'"
+  role="alert"
+>
+  A simple success alert—check it out!
+</div>
+<div class="alert" [class.alert-danger]="true" role="alert">
+  A simple danger alert—check it out!
+</div>
+<div
+  class="alert"
+  [class.alert-warning]="selected.value == 'alert-warning'"
+  role="alert"
+>
+  A simple warning alert—check it out!
+</div>
+<div
+  class="alert {{ selected.value }}"
+  [style.font-weight]="selected.value == 'alert-warning' ? 'bold' : 'normal'"
+  role="alert"
+>
+  Switchable!
+</div>
+
+<hr />
+
+<h1>2. Data binding</h1>
 
 <p>String via interpolation: {{ url }}</p>
 <p>1 + 1 = {{ 1 + 1 }}</p>
 <p>1 + 1 is not {{ 1 + 1 + getValue() }}</p>
-<img src="{{ urlImage }}" alt="Nature">
-<img [src]="urlImage">
+<img src="{{ urlImage }}" alt="Nature" />
+<img [src]="urlImage" />

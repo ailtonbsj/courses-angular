@@ -1,0 +1,15 @@
+<h1>5. Two-way databinding</h1>
+
+One way: <input type="text" [value]="name"><br>
+Two way: <input type="text" #myinp [value]="name" (input)="name = myinp.value"><br>
+Two way #2: <input type="text" [ngModel]="name" (ngModelChange)="name = $event"><br>
+Two way #3: <input type="text" [(ngModel)]="name">
+<p>Your name is {{ name }}</p>
+<hr>
+Nome: <input type="text" [(ngModel)]="people.name"><br>
+Idade: <input type="text" [(ngModel)]="people.age"><br>
+Rua: <input type="text" [(ngModel)]="people.address.street"><br>
+Numero: <input type="text" [(ngModel)]="people.address.number"><br>
+
+Meu nome é {{ people.name }}. Minha idade é {{ people.age }}.
+Moro em {{ people.address.street }}, {{ people.address.number }}.

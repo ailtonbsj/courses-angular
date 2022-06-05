@@ -1,0 +1,18 @@
+<h1>4. Event binding</h1>
+
+<button class="btn btn-primary" (click)="onClickBtn()">Me clique!</button>
+<br /><br />
+<input
+  type="text"
+  (keyup)="onKeyPressedInput($event)"
+  (keyup.enter)="saveValueInput($event.target)"
+/>
+<br />
+Value: {{ currentValue }}<br>
+Save: {{ saveValue }}
+
+<h3>Best way</h3>
+
+<input type="text" #myInput (keyup.enter)="saveMyInput(myInput.value)"><br>
+Saved: <b>{{ saveMyValue }}</b>
+
