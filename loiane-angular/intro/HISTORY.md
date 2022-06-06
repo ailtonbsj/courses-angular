@@ -27,4 +27,7 @@ ng g m twoway
 
 # Twoway component
 ng g c twoway
+
+# OutputProperty component
+ng g c twoway/output-property
 ```

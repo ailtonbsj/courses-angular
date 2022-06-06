@@ -22,4 +22,9 @@ export class TwowayComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onMudouValor(e: Event) {
+    console.log(e);
+
+  }
+
 }
