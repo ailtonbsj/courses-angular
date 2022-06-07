@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'intro';
+
+  valorPai = 10;
+  show = true;
+
+  changeValue() {
+    this.valorPai = 5;
+  }
+
+  destruir() {
+    this.show = false;
+  }
+
 }

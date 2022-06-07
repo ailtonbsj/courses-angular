@@ -16,6 +16,7 @@ export class TwowayComponent implements OnInit {
       number: 1
     }
   }
+  nomeDoCurso = 'Angular2+';
 
   constructor() { }
 

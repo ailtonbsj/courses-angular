@@ -28,6 +28,12 @@ ng g m twoway
 # Twoway component
 ng g c twoway
 
+# InputProperty component
+ng g c input-property
+
 # OutputProperty component
 ng g c twoway/output-property
+
+# lifeCycle component
+ng g c cycle
 ```

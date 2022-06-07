@@ -8,6 +8,7 @@ import { EventBindingComponent } from './event-binding/event-binding.component';
 import { FirstComponent } from './first/first.component';
 import { SecondComponent } from './second/second.component';
 import { TwowayModule } from './twoway/twoway.module';
+import { CycleComponent } from './cycle/cycle.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TwowayModule } from './twoway/twoway.module';
     SecondComponent,
     DataBindingComponent,
     EventBindingComponent,
+    CycleComponent,
   ],
   imports: [BrowserModule, CursosModule, TwowayModule],
   providers: [],
