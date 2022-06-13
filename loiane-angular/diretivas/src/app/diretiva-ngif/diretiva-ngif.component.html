@@ -1,1 +1,30 @@
+<h1>3. *ngSwitch</h1>
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" [class.active]="aba == 'home'" href="#" (click)="aba = 'home'">Home</a>
+        <a class="nav-link" [class.active]="aba == 'mapa'" href="#" (click)="aba = 'mapa'">Mapa</a>
+        <a class="nav-link" [class.active]="aba == 'lista'" href="#" (click)="aba = 'lista'">Lista</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container" [ngSwitch]="aba">
+  <p *ngSwitchCase="'mapa'">Modo mapa ativado.</p>
+  <p *ngSwitchCase="'lista'">Modo lista ativado.</p>
+  <p *ngSwitchDefault>Home</p>
+</div>
+
 <h1>2. *ngIf</h1>
+
+<div *ngIf="cursos.length > 0">Lista de cursos!</div>
+<div *ngIf="cursos.length == 0">Não existe cursos!</div>
+<div [hidden]="hasCourses">Não Existem cursos!</div>
+<div [hidden]="!hasCourses">Existem cursos!</div>

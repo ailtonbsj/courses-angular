@@ -1,0 +1,20 @@
+<h1>10. Criando diretiva estrutural</h1>
+
+<p *ngIf="isActive">Your option is active!</p>
+<p *ngElse="isActive">Your option is NOT active!</p>
+
+<ng-template [ngElse]="isActive">
+  <div>Without *</div>
+</ng-template>
+
+<button (click)="isActive = !isActive">Toggle option</button>
+
+<h1>9. HostListener and HostBinding</h1>
+
+<p highlightMouse>Passe o mouse</p>
+
+<p [highlight]="'lime'" [defaultColor]="'#DDD'">Passe o mouse</p>
+
+<h1>8. Diretivas</h1>
+
+<div fundoAmarelo>Minha diretiva</div>

@@ -12,9 +12,20 @@ npm install -D @types/jquery
 npm i lodash
 npm i -D @types/lodash
 
-# Component
+# Components
 ng g c diretiva-ngif
 
-#ng g s diretiva-ngif/diretiva-if
+ng g c diretiva-ngfor
 
+ng g c diretiva-elvis
+
+# Diretiva
+ng generate directive shared/fundo-amarelo
+ng g c diretivas-customizadas
+
+ng g d shared/highlight-mouse
+
+ng g d shared/highlight
+
+ng g d shared/ng-else
 ```

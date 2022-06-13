@@ -1,0 +1,44 @@
+<h1>5. *ngClass and *ngStyle</h1>
+
+<button
+  [class.color-red]="isRed"
+  [class.color-blue]="!isRed"
+  (click)="changeColor()"
+>
+  Change color!
+</button>
+
+<button
+  class="btn"
+  [ngClass]="{
+    'btn-primary': isRed,
+    'btn-danger': !isRed
+  }"
+  (click)="changeColor()"
+>
+  Switch color!
+</button>
+
+<div
+  [style.backgroundColor]="'yellow'"
+  [style.color]="'red'"
+  [style.fontSize]="'24px'"
+  [style.margin]="'10px'"
+  [style.width]="'200px'"
+>
+  Hello world!
+</div>
+
+<div [ngStyle]="{
+  'backgroundColor': 'lime',
+  'color': 'white',
+  'fontSize': '36px',
+  'width': '200px',
+  'marginLeft': '50px'
+}">world!</div>
+
+<h1>4. *ngFor</h1>
+
+<ul>
+  <li *ngFor="let curso of cursos; let i = index">{{ i + 1 }} - {{ curso }}</li>
+</ul>
