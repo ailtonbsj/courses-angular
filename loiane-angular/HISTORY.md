@@ -6,4 +6,7 @@ ng new intro
 
 # Diretivas project
 ng new diretivas
+
+# Servicos project
+ng new servicos
 ```
