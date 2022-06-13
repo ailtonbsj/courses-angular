@@ -9,4 +9,7 @@ ng new diretivas
 
 # Servicos project
 ng new servicos
+
+# Pipes project
+ng new pipes
 ```

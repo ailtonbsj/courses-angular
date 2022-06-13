@@ -1,0 +1,7 @@
+<h1>Irmão 1</h1>
+<ul>
+    <li *ngFor="let dado of dados">
+        {{ dado }}
+    </li>
+</ul>
+<input type="text" #entrada><button (click)="addDado(entrada.value)">Inserir dado</button>
