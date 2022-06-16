@@ -12,4 +12,7 @@ ng new servicos
 
 # Pipes project
 ng new pipes
+
+# Rotas project
+ng new rotas
 ```

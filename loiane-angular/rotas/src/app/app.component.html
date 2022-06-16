@@ -1,0 +1,13 @@
+<nav>
+  <div class="nav-wrapper">
+    <a [routerLink]="'/'" class="brand-logo right">Rotas com Angular</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <li><a [routerLink]="'login'">Login</a></li>
+      <li><a [routerLink]="'cursos'">Cursos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
