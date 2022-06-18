@@ -7,4 +7,8 @@ ng g c login
 
 npm install materialize-css@next
 npm i -D @types/materialize-css
+
+ng g c curso-detalhe
+
+ng g s cursos/cursos
 ```
