@@ -1,0 +1,15 @@
+<h4>Editar do Aluno</h4>
+
+<div class="input-field col s12">
+  <input [(ngModel)]="aluno.id" id="id" type="text" disabled class="validate">
+  <label for="id">ID</label>
+</div>
+<div class="input-field col s12">
+  <input [(ngModel)]="aluno.name" id="name" type="text" class="validate">
+  <label for="name">Nome</label>
+</div>
+<div class="input-field col s12">
+  <input [(ngModel)]="aluno.email" id="email" type="text" class="validate">
+  <label for="email">E-mail</label>
+</div>
+<button class="btn" (click)="saveAluno()">Salvar</button>

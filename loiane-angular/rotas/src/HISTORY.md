@@ -11,4 +11,10 @@ npm i -D @types/materialize-css
 ng g c curso-detalhe
 
 ng g s cursos/cursos
+
+ng g m alunos
+ng g c alunos
+ng g c alunos/aluno-form
+ng g c alunos/aluno-detalhe
+ng g s alunos/alunos
 ```
