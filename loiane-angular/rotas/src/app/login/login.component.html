@@ -1,1 +1,14 @@
-<p>login works!</p>
+<div class="row">
+  <h5>Login</h5>
+  <div class="input-field col s12">
+    <input [(ngModel)]="usuario.login" id="user" type="text" class="validate">
+    <label class="active" for="user">Usuário</label>
+  </div>
+  <div class="input-field col s12">
+    <input [(ngModel)]="usuario.senha" id="password" type="password" class="validate">
+    <label class="active" for="password">Senha</label>
+  </div>
+  <button class="btn waves-effect waves-light" type="submit" (click)="doLogin()">Acessar
+    <i class="material-icons right">send</i>
+  </button>
+</div>

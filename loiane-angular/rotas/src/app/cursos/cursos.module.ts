@@ -19,6 +19,4 @@ import { CursosService } from "./cursos.service";
     CursosService
   ]
 })
-export class CursosModule {
-
-}
+export class CursosModule { }

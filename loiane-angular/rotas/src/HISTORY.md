@@ -17,4 +17,5 @@ ng g c alunos
 ng g c alunos/aluno-form
 ng g c alunos/aluno-detalhe
 ng g s alunos/alunos
+ng g s login/auth
 ```

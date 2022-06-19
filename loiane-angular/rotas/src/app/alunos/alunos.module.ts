@@ -6,8 +6,6 @@ import { AlunoDetalheComponent } from './aluno-detalhe/aluno-detalhe.component';
 import { AlunosRoutingModule } from './alunos.routing.module';
 import { FormsModule } from '@angular/forms';
 
-
-
 @NgModule({
   declarations: [
     AlunosComponent,
