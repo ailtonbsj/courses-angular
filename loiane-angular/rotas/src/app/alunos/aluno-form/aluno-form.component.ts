@@ -13,6 +13,7 @@ export class AlunoFormComponent implements OnInit {
 
   router: Subscription = Subscription.EMPTY;
   currAluno: any = null;
+  formHasChanged = false;
 
   get aluno() {
     M.updateTextFields();
@@ -37,6 +38,10 @@ export class AlunoFormComponent implements OnInit {
 
   saveAluno() {
     alert(this.alunosService.setAluno(this.aluno));
+  }
+
+  changedForm() {
+    this.formHasChanged = true;
   }
 
 }

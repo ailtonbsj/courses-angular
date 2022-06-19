@@ -18,4 +18,12 @@ ng g c alunos/aluno-form
 ng g c alunos/aluno-detalhe
 ng g s alunos/alunos
 ng g s login/auth
+
+ng generate guard guards/auth --implements CanActivate
+
+# Options: CanActivateChild
+ng g g guards/alunos
+
+# Options: CanDeactivated
+ng g g guards/alunosDeactivate
 ```
