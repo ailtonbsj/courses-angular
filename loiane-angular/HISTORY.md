@@ -15,4 +15,7 @@ ng new pipes
 
 # Rotas project
 ng new rotas
+
+# Forms project
+ng new forms --routing
 ```
