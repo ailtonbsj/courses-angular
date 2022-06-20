@@ -3,16 +3,18 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AlunosService } from '../alunos.service';
 import * as M from 'materialize-css';
+import { IFormCanDeactive } from 'src/app/guards/iform-candeactive';
+import { Aluno } from '../aluno';
 
 @Component({
   selector: 'app-aluno-form',
   templateUrl: './aluno-form.component.html',
   styleUrls: ['./aluno-form.component.css']
 })
-export class AlunoFormComponent implements OnInit {
+export class AlunoFormComponent implements OnInit, IFormCanDeactive {
 
   router: Subscription = Subscription.EMPTY;
-  currAluno: any = null;
+  currAluno: Aluno | null = null;
   formHasChanged = false;
 
   get aluno() {
@@ -37,11 +39,16 @@ export class AlunoFormComponent implements OnInit {
   }
 
   saveAluno() {
-    alert(this.alunosService.setAluno(this.aluno));
+    if(this.aluno != null) alert(this.alunosService.setAluno(this.aluno));
+    else alert("Error!");
   }
 
   changedForm() {
     this.formHasChanged = true;
+  }
+
+  hasFormChanged() {
+    return this.formHasChanged;
   }
 
 }

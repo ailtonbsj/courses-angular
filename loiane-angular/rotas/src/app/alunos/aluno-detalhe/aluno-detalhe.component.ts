@@ -18,8 +18,12 @@ export class AlunoDetalheComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.inscricao = this.activedRoute.params.subscribe(param => {
-      this.aluno = this.alunosService.getAluno(+param['id']);
+    // this.inscricao = this.activedRoute.params.subscribe(param => {
+    //   this.aluno = this.alunosService.getAluno(+param['id']);
+    // });
+    console.log('OnInit AlunoDetalhe');
+    this.activedRoute.data.subscribe(param => {
+      this.aluno = param['aluno'];
     });
   }
 

@@ -12,19 +12,24 @@ const appRoutes: Routes = [
   {
     path: 'cursos',
     loadChildren: () => import('../app/cursos/cursos.module').then(x => x.CursosModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
   },
   {
     path: 'alunos',
     loadChildren: () => import('../app/alunos/alunos.module').then(x => x.AlunosModule),
     canActivate: [AuthGuard],
-    canActivateChild: [AlunosGuard]
+    canActivateChild: [AlunosGuard],
+    canLoad: [AuthGuard]
+  }, {
+    path: '**',
+    redirectTo: 'login'
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes)],
+    RouterModule.forRoot(appRoutes, { useHash: true })],
   exports: [
     RouterModule
   ]
