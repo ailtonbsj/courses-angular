@@ -22,8 +22,79 @@
     </div>
   </div>
 
+  <div formGroupName="endereco">
+
+    <div class="form-group">
+      <div class="col-md-3" [ngClass]="hasErrorAndFeedback('endereco.cep')">
+        <label for="cep" class="control-label">CEP</label>
+        <input type="text" class="form-control" id="cep" formControlName="cep">
+        <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isInvalidAndTouched('endereco.cep')"></span>
+        <field-control-error [show]="isInvalidAndTouched('endereco.cep')" msgError="CEP é obrigatório."></field-control-error>
+      </div>
+
+      <div class="col-md-3" [ngClass]="hasErrorAndFeedback('endereco.numero')">
+        <label for="numero" class="control-label">Número</label>
+        <input type="text" class="form-control" id="numero" formControlName="numero">
+        <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isInvalidAndTouched('endereco.numero')"></span>
+        <field-control-error [show]="isInvalidAndTouched('endereco.numero')" msgError="Número é obrigatório.">
+        </field-control-error>
+      </div>
+
+      <div class="col-md-6" [ngClass]="hasErrorAndFeedback('endereco.complemento')">
+        <label for="complemento" class="control-label">Complemento</label>
+        <input type="text" class="form-control" id="complemento" formControlName="complemento">
+        <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isInvalidAndTouched('endereco.complemento')"></span>
+        <field-control-error [show]="isInvalidAndTouched('endereco.complemento')" msgError="Complemento é obrigatório.">
+        </field-control-error>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="hasErrorAndFeedback('endereco.rua')">
+      <div class="col-sm-12">
+        <label class="control-label" for="rua">Rua</label>
+      </div>
+      <div class="col-sm-12">
+        <input type="text" class="form-control" id="rua" formControlName="rua">
+
+        <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isInvalidAndTouched('endereco.rua')"></span>
+        <field-control-error [show]="isInvalidAndTouched('endereco.rua')" msgError="Rua é obrigatório."></field-control-error>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-5" [ngClass]="hasErrorAndFeedback('endereco.bairro')">
+        <label for="bairro" class="control-label">Bairro</label>
+        <input type="text" class="form-control" id="bairro" formControlName="bairro">
+
+        <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isInvalidAndTouched('endereco.bairro')"></span>
+        <field-control-error [show]="isInvalidAndTouched('endereco.bairro')" msgError="Bairro é obrigatório.">
+        </field-control-error>
+      </div>
+
+      <div class="col-md-5" [ngClass]="hasErrorAndFeedback('endereco.cidade')">
+        <label for="cidade" class="control-label">Cidade</label>
+        <input type="text" class="form-control" id="cidade" formControlName="cidade">
+
+        <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isInvalidAndTouched('endereco.cidade')"></span>
+        <field-control-error [show]="isInvalidAndTouched('endereco.cidade')" msgError="Cidade é obrigatório.">
+        </field-control-error>
+      </div>
+
+      <div class="col-md-2" [ngClass]="hasErrorAndFeedback('endereco.estado')">
+        <label for="estado" class="control-label">Estado</label>
+        <input type="text" class="form-control" id="estado" formControlName="estado">
+
+        <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isInvalidAndTouched('endereco.estado')"></span>
+        <field-control-error [show]="isInvalidAndTouched('endereco.estado')" msgError="Estado é obrigatório.">
+        </field-control-error>
+      </div>
+    </div>
+
+  </div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
 
+  <pre class="mt-3">{{ formulario.valid }}</pre>
   <pre class="mt-3">{{ formulario.value | json }}</pre>
 
 </form>
