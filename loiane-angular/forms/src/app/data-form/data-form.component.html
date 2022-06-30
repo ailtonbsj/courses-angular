@@ -27,7 +27,7 @@
     <div class="form-group">
       <div class="col-md-3" [ngClass]="hasErrorAndFeedback('endereco.cep')">
         <label for="cep" class="control-label">CEP</label>
-        <input type="text" class="form-control" id="cep" formControlName="cep">
+        <input type="text" class="form-control" id="cep" formControlName="cep" (blur)="consultaCEP()">
         <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isInvalidAndTouched('endereco.cep')"></span>
         <field-control-error [show]="isInvalidAndTouched('endereco.cep')" msgError="CEP é obrigatório."></field-control-error>
       </div>

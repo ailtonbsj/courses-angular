@@ -36,6 +36,32 @@ export class DataFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  consultaCEP() {
+    let cep = this.formulario.get('endereco.cep')?.value.replace(/\D/g, '');
+    if (cep != '') {
+      let validacep = /^[0-9]{8}$/;
+      if (validacep.test(cep)) {
+        this.http
+          .get(`//viacep.com.br/ws/${cep}/json/`)
+          .subscribe((response) => {
+            this.popularForm(response);
+          });
+      }
+    }
+  }
+
+  popularForm(dados: any) {
+    this.formulario.patchValue({
+      endereco: {
+        complemento: dados.complemento,
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+      }
+    });
+  }
+
   onSubmit() {
     console.log(this.formulario.value);
 
