@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-data-form',
@@ -15,7 +15,10 @@ export class DataFormComponent implements OnInit {
 
     // this.formulario = new FormGroup({
     //   nome: new FormControl(null),
-    //   email: new FormControl(null)
+    //   email: new FormControl(null),
+    //   endereco: new FormGroup({
+    //     cep: new FormControl(null)
+    //   })
     // });
 
     this.formulario = this.formBuilder.group({
@@ -63,26 +66,36 @@ export class DataFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formulario.value);
+    if (this.formulario.valid) {
+      this.http.post('//httpbin.org/post', JSON.stringify(this.formulario.value))
+        .subscribe({
+          next: (response) => {
+            console.log(response);
+            console.log(this.formulario);
 
-    this.http.post('//httpbin.org/post', JSON.stringify(this.formulario.value))
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          console.log(this.formulario);
+            //this.formulario.reset();
+          },
+          error: (error) => {
+            console.log(error);
+            alert(error.message);
+          }
+        });
+    } else {
+      this.verificaValidacoesForm(this.formulario);
+    }
+  }
 
-          //this.formulario.reset();
-        },
-        error: (error) => {
-          console.log(error);
-          alert(error.message);
-        }
-      });
+  verificaValidacoesForm(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).map(fieldName => {
+      const control = formGroup.get(fieldName);
+      control?.markAsDirty();
+      if(control instanceof FormGroup) this.verificaValidacoesForm(control);
+    });
   }
 
   isInvalidAndTouched(fieldName: string): boolean {
     let field = this.formulario.get(fieldName);
-    return <boolean>(field?.invalid && field?.touched);
+    return <boolean>(field?.invalid && (field?.touched || field?.dirty));
   }
 
   hasErrorAndFeedback(fieldName: string) {
