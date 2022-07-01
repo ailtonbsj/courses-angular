@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { EstadosBr } from '../shared/models/estados-br';
+import { ConsultaCepService } from '../shared/services/consulta-cep.service';
+import { DropdownService } from '../shared/services/dropdown.service';
 
 @Component({
   selector: 'app-data-form',
@@ -10,8 +13,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
+  estados: EstadosBr[] | null = null;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private dropDownService: DropdownService,
+    private consultaCepService: ConsultaCepService) {
 
     // this.formulario = new FormGroup({
     //   nome: new FormControl(null),
@@ -37,19 +45,19 @@ export class DataFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dropDownService.getEstadosBR().subscribe(dados => {
+      this.estados = dados;
+    });
   }
 
   consultaCEP() {
-    let cep = this.formulario.get('endereco.cep')?.value.replace(/\D/g, '');
-    if (cep != '') {
-      let validacep = /^[0-9]{8}$/;
-      if (validacep.test(cep)) {
-        this.http
-          .get(`//viacep.com.br/ws/${cep}/json/`)
-          .subscribe((response) => {
-            this.popularForm(response);
-          });
-      }
+    let cep = this.formulario.get('endereco.cep')?.value;
+    if (cep != null && cep !== '') {
+      cep = cep.replace(/\D/g, '');
+      this.consultaCepService.consultaCEP(cep).subscribe(data => {
+        console.log(data);
+        this.popularForm(data);
+      });
     }
   }
 
@@ -89,7 +97,7 @@ export class DataFormComponent implements OnInit {
     Object.keys(formGroup.controls).map(fieldName => {
       const control = formGroup.get(fieldName);
       control?.markAsDirty();
-      if(control instanceof FormGroup) this.verificaValidacoesForm(control);
+      if (control instanceof FormGroup) this.verificaValidacoesForm(control);
     });
   }
 

@@ -82,7 +82,9 @@
 
       <div class="col-md-2" [ngClass]="hasErrorAndFeedback('endereco.estado')">
         <label for="estado" class="control-label">Estado</label>
-        <input type="text" class="form-control" id="estado" formControlName="estado">
+        <select id="estado"class="form-control" formControlName="estado">
+          <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
+        </select>
 
         <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isInvalidAndTouched('endereco.estado')"></span>
         <field-control-error [show]="isInvalidAndTouched('endereco.estado')" msgError="Estado é obrigatório.">
