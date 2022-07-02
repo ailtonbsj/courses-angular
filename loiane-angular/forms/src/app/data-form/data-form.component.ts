@@ -15,6 +15,9 @@ export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
   estados: Observable<EstadosBr[]> = of();
+  cargos: any[] = [];
+  tecnologias: any[] = [];
+  newsletter: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,12 +44,35 @@ export class DataFormComponent implements OnInit {
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
         estado: [null, Validators.required],
-      })
+      }),
+      cargo: [null],
+      tecnologias: [null],
+      newsletter: [null]
     });
+  }
+
+  setCargo() {
+    this.formulario.get('cargo')?.patchValue(
+      { nome: 'Dev', sigla: 'Pl', descricao: 'Dev Pleno' }
+    );
+  }
+
+  setTecnologias() {
+    this.formulario.get('tecnologias')?.patchValue(['nest', 'vue']);
+  }
+
+  comparaCargos(ob1: any, ob2: any) {
+    if (ob1 && ob2) {
+      if (ob1.sigla === ob2.sigla) return true;
+    }
+    return false;
   }
 
   ngOnInit(): void {
     this.estados = this.dropDownService.getEstadosBR();
+    this.cargos = this.dropDownService.getCargos();
+    this.tecnologias = this.dropDownService.getTecnologias();
+    this.newsletter = this.dropDownService.getNewsletter();
   }
 
   consultaCEP() {
@@ -79,7 +105,6 @@ export class DataFormComponent implements OnInit {
           next: (response) => {
             console.log(response);
             console.log(this.formulario);
-
             //this.formulario.reset();
           },
           error: (error) => {
