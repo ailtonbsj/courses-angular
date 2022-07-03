@@ -130,6 +130,33 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <div class="col-md-3" [ngClass]="hasErrorAndFeedback('termos')">
+      <div class="checkbox">
+        <label class="checkbox-inline">
+          <input type="checkbox" formControlName="termos"> Aceito os termos.
+        </label>
+        <field-control-error [show]="isInvalidAndTouched('termos')" msgError="Aceite os termos.">
+        </field-control-error>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-12" [ngClass]="hasErrorAndFeedback('frameworks')">
+      <label for="framwworks">Frameworks</label>
+      <div id="frameworks" class="row">
+        <div class="checkbox" class="col-sm-2" formArrayName="frameworks" *ngFor="let item of frameworksCtrls; let i = index">
+          <label class="checkbox-inline">
+            <input type="checkbox" [formControlName]="i"> {{ frameworks[i] }}
+          </label>
+        </div>
+      </div>
+      <field-control-error [show]="isInvalidAndTouched('frameworks')" msgError="Marque pelo menos um.">
+      </field-control-error>
+    </div>
+  </div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
 
   <button type="btn" class="btn btn-alert ml-3" (click)="setCargo()">Set Cargo</button>

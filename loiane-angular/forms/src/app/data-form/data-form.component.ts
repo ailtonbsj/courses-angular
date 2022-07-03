@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { EstadosBr } from '../shared/models/estados-br';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
@@ -18,6 +18,8 @@ export class DataFormComponent implements OnInit {
   cargos: any[] = [];
   tecnologias: any[] = [];
   newsletter: any[] = [];
+  frameworks = ['Angular', 'React', 'Vue', 'jQuery'];
+  frameworksCtrls: AbstractControl[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,8 +49,24 @@ export class DataFormComponent implements OnInit {
       }),
       cargo: [null],
       tecnologias: [null],
-      newsletter: [null]
+      newsletter: [null],
+      termos: [null, Validators.pattern('true')],
+      frameworks: this.buildFramework()
     });
+
+    this.frameworksCtrls = (<FormArray>this.formulario.get('frameworks')).controls;
+  }
+
+  requiredMinCheckbox(min = 1) {
+    return (formArray: AbstractControl) => {
+      const totalChecked = (<FormArray>formArray).controls.filter(v => v.value).length;
+      return totalChecked >= min ? null : { required: true };
+    }
+  }
+
+  buildFramework() {
+    const values = this.frameworks.map(v => new FormControl(false));
+    return this.formBuilder.array(values, this.requiredMinCheckbox(1));
   }
 
   setCargo() {
@@ -100,7 +118,12 @@ export class DataFormComponent implements OnInit {
 
   onSubmit() {
     if (this.formulario.valid) {
-      this.http.post('//httpbin.org/post', JSON.stringify(this.formulario.value))
+      const formSnap = Object.assign({}, this.formulario.value);
+      const values = Object.assign(formSnap, {
+        frameworks: formSnap.frameworks.map(
+          (v: any, i: any) => v ? this.frameworks[i] : null).filter((v: any) => v)
+      });
+      this.http.post('//httpbin.org/post', JSON.stringify(values))
         .subscribe({
           next: (response) => {
             console.log(response);
