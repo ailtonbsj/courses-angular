@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { FormValidations } from '../shared/form-validations';
 import { EstadosBr } from '../shared/models/estados-br';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { DropdownService } from '../shared/services/dropdown.service';
+import { VerificaEmailService } from './services/verifica-email.service';
 
 @Component({
   selector: 'app-data-form',
@@ -25,7 +27,8 @@ export class DataFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private dropDownService: DropdownService,
-    private consultaCepService: ConsultaCepService) {
+    private consultaCepService: ConsultaCepService,
+    private verificaEmailService: VerificaEmailService) {
 
     // this.formulario = new FormGroup({
     //   nome: new FormControl(null),
@@ -37,9 +40,18 @@ export class DataFormComponent implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3)]],
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, {
+        validators: [
+          Validators.required, Validators.email
+        ],
+        asyncValidators: [
+          this.validarEmail.bind(this)
+        ],
+        updateOn: 'blur'
+      }],
+      confirmEmail: [null, [Validators.required, FormValidations.equalsTo('email')]],
       endereco: this.formBuilder.group({
-        cep: [null, Validators.required],
+        cep: [null, [Validators.required, this.cepValidator]],
         numero: [null, Validators.required],
         complemento: [null, Validators.required],
         rua: [null, Validators.required],
@@ -57,11 +69,32 @@ export class DataFormComponent implements OnInit {
     this.frameworksCtrls = (<FormArray>this.formulario.get('frameworks')).controls;
   }
 
+  ngOnInit(): void {
+    this.estados = this.dropDownService.getEstadosBR();
+    this.cargos = this.dropDownService.getCargos();
+    this.tecnologias = this.dropDownService.getTecnologias();
+    this.newsletter = this.dropDownService.getNewsletter();
+  }
+
+  validarEmail(formControl: FormControl) {
+    return this.verificaEmailService.verificarEmail(formControl.value)
+      .pipe(map(emailExist => emailExist ? { emailInvalido: true } : null));
+  }
+
   requiredMinCheckbox(min = 1) {
     return (formArray: AbstractControl) => {
       const totalChecked = (<FormArray>formArray).controls.filter(v => v.value).length;
       return totalChecked >= min ? null : { required: true };
     }
+  }
+
+  cepValidator(control: FormControl) {
+    const cep = control.value;
+    if (cep && cep !== '') {
+      const validcep = /^[0-9]{8}$/;
+      return validcep.test(cep) ? null : { cepInvalido: true };
+    }
+    return null;
   }
 
   buildFramework() {
@@ -84,13 +117,6 @@ export class DataFormComponent implements OnInit {
       if (ob1.sigla === ob2.sigla) return true;
     }
     return false;
-  }
-
-  ngOnInit(): void {
-    this.estados = this.dropDownService.getEstadosBR();
-    this.cargos = this.dropDownService.getCargos();
-    this.tecnologias = this.dropDownService.getTecnologias();
-    this.newsletter = this.dropDownService.getNewsletter();
   }
 
   consultaCEP() {
@@ -151,6 +177,11 @@ export class DataFormComponent implements OnInit {
   isInvalidAndTouched(fieldName: string): boolean {
     let field = this.formulario.get(fieldName);
     return <boolean>(field?.invalid && (field?.touched || field?.dirty));
+  }
+
+  cpfIsRequired(fieldName: string): boolean {
+    let field = this.formulario.get(fieldName);
+    return <boolean>(field?.hasError('required') && (field?.touched || field?.dirty));
   }
 
   hasErrorAndFeedback(fieldName: string) {
