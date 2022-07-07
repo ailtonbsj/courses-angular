@@ -110,9 +110,21 @@
         </field-control-error>
       </div>
 
-      <div class="col-md-5" [ngClass]="hasErrorAndFeedback('endereco.cidade')">
+      <!-- <div class="col-md-5" [ngClass]="hasErrorAndFeedback('endereco.cidade')">
         <label for="cidade" class="control-label">Cidade</label>
         <input type="text" class="form-control" id="cidade" formControlName="cidade">
+
+        <span class="glyphicon glyphicon-remove form-control-feedback"
+          *ngIf="isInvalidAndTouched('endereco.cidade')"></span>
+        <field-control-error [show]="isInvalidAndTouched('endereco.cidade')" msgError="Cidade é obrigatório.">
+        </field-control-error>
+      </div> -->
+
+      <div class="col-md-5" [ngClass]="hasErrorAndFeedback('endereco.cidade')">
+        <label for="cidade" class="control-label">Cidade</label>
+        <select id="cidade" class="form-control" formControlName="cidade">
+          <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+        </select>
 
         <span class="glyphicon glyphicon-remove form-control-feedback"
           *ngIf="isInvalidAndTouched('endereco.cidade')"></span>
@@ -123,7 +135,7 @@
       <div class="col-md-2" [ngClass]="hasErrorAndFeedback('endereco.estado')">
         <label for="estado" class="control-label">Estado</label>
         <select id="estado" class="form-control" formControlName="estado">
-          <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
+          <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
         </select>
 
         <span class="glyphicon glyphicon-remove form-control-feedback"

@@ -1,22 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { EstadosBr } from '../models/estados-br';
+import { map, Observable, tap } from 'rxjs';
+import { Cidade } from '../models/cidade';
+import { EstadoBr } from '../models/estado-br';
 
 @Injectable()
 export class DropdownService {
 
   constructor(private http: HttpClient) { }
 
-  getEstadosBR(): Observable<EstadosBr[]> {
-    return this.http.get<EstadosBr[]>('assets/dados/estadosbr.json');
+  getEstadosBR(): Observable<EstadoBr[]> {
+    return this.http.get<EstadoBr[]>('assets/dados/estadosbr.json');
   }
 
-  getCargos(){
+  getCidades(idUF: number) {
+    return this.http.get<Cidade[]>('assets/dados/cidades.json')
+    .pipe(
+      map(cidades => cidades.filter(cidade => cidade.estado == idUF)),
+    );
+  }
+
+  getCargos() {
     return [
-      { nome: 'Dev', sigla: 'Jr', descricao: 'Dev Junior'},
-      { nome: 'Dev', sigla: 'Pl', descricao: 'Dev Pleno'},
-      { nome: 'Dev', sigla: 'Sr', descricao: 'Dev Senior'},
+      { nome: 'Dev', sigla: 'Jr', descricao: 'Dev Junior' },
+      { nome: 'Dev', sigla: 'Pl', descricao: 'Dev Pleno' },
+      { nome: 'Dev', sigla: 'Sr', descricao: 'Dev Senior' },
     ];
   }
 

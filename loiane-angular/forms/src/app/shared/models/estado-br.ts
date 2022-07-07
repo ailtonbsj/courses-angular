@@ -1,4 +1,4 @@
-export interface EstadosBr {
+export interface EstadoBr {
   id: number;
   sigla: string,
   nome: string;
