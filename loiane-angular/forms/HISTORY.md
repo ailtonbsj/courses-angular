@@ -14,4 +14,6 @@ ng g s shared/services/dropdown
 cd src/app/shared/services/
 ng g s consulta-cep
 cd -
+
+ng g c shared/base-form
 ```

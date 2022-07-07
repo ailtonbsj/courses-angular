@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { distinctUntilChanged, EMPTY, map, Observable, of, switchMap, tap } from 'rxjs';
+import { BaseFormComponent } from '../shared/base-form/base-form.component';
 import { FormValidations } from '../shared/form-validations';
 import { EstadosBr } from '../shared/models/estados-br';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
@@ -13,9 +14,8 @@ import { VerificaEmailService } from './services/verifica-email.service';
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.css']
 })
-export class DataFormComponent implements OnInit {
+export class DataFormComponent extends BaseFormComponent implements OnInit {
 
-  formulario: FormGroup;
   estados: Observable<EstadosBr[]> = of();
   cargos: any[] = [];
   tecnologias: any[] = [];
@@ -29,6 +29,7 @@ export class DataFormComponent implements OnInit {
     private dropDownService: DropdownService,
     private consultaCepService: ConsultaCepService,
     private verificaEmailService: VerificaEmailService) {
+    super();
 
     // this.formulario = new FormGroup({
     //   nome: new FormControl(null),
@@ -91,13 +92,6 @@ export class DataFormComponent implements OnInit {
       .pipe(map(emailExist => emailExist ? { emailInvalido: true } : null));
   }
 
-  requiredMinCheckbox(min = 1) {
-    return (formArray: AbstractControl) => {
-      const totalChecked = (<FormArray>formArray).controls.filter(v => v.value).length;
-      return totalChecked >= min ? null : { required: true };
-    }
-  }
-
   cepValidator(control: FormControl) {
     const cep = control.value;
     if (cep && cep !== '') {
@@ -149,54 +143,28 @@ export class DataFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (this.formulario.valid) {
-      const formSnap = Object.assign({}, this.formulario.value);
-      const values = Object.assign(formSnap, {
-        frameworks: formSnap.frameworks.map(
-          (v: any, i: any) => v ? this.frameworks[i] : null).filter((v: any) => v)
-      });
-      this.http.post('//httpbin.org/post', JSON.stringify(values))
-        .subscribe({
-          next: (response) => {
-            console.log(response);
-            console.log(this.formulario);
-            //this.formulario.reset();
-          },
-          error: (error) => {
-            console.log(error);
-            alert(error.message);
-          }
-        });
-    } else {
-      this.verificaValidacoesForm(this.formulario);
-    }
-  }
-
-  verificaValidacoesForm(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).map(fieldName => {
-      const control = formGroup.get(fieldName);
-      control?.markAsDirty();
-      control?.markAsTouched();
-      if (control instanceof FormGroup) this.verificaValidacoesForm(control);
+  submit(): void {
+    const formSnap = Object.assign({}, this.formulario.value);
+    const values = Object.assign(formSnap, {
+      frameworks: formSnap.frameworks.map(
+        (v: any, i: any) => v ? this.frameworks[i] : null).filter((v: any) => v)
     });
-  }
-
-  isInvalidAndTouched(fieldName: string): boolean {
-    let field = this.formulario.get(fieldName);
-    return <boolean>(field?.invalid && (field?.touched || field?.dirty));
+    this.http.post('//httpbin.org/post', JSON.stringify(values))
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+          console.log(this.formulario);
+        },
+        error: (error) => {
+          console.log(error);
+          alert(error.message);
+        }
+      });
   }
 
   cpfIsRequired(fieldName: string): boolean {
     let field = this.formulario.get(fieldName);
     return <boolean>(field?.hasError('required') && (field?.touched || field?.dirty));
-  }
-
-  hasErrorAndFeedback(fieldName: string) {
-    return {
-      'has-error': this.isInvalidAndTouched(fieldName),
-      'has-feedback': this.isInvalidAndTouched(fieldName),
-    };
   }
 
 }
