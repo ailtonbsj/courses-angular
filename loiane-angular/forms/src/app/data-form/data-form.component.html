@@ -1,6 +1,12 @@
 <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
-  <div class="form-group" [ngClass]="hasErrorAndFeedback('nome')">
+  <input-field label="Nome" id="nome" formControlName="nome"
+    [classCss]="hasErrorAndFeedback('nome')"
+    [control]="formulario.get('nome')"
+    [showError]="isInvalidAndTouched('nome')">
+  </input-field>
+
+  <!-- <div class="form-group" [ngClass]="hasErrorAndFeedback('nome')">
     <div class="col-sm-12">
       <label for="nome">Nome</label>
     </div>
@@ -9,7 +15,7 @@
       <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isInvalidAndTouched('nome')"></span>
       <error-msg label="Nome" [control]="formulario.get('nome')"></error-msg>
     </div>
-  </div>
+  </div> -->
 
   <div class="form-group" [ngClass]="hasErrorAndFeedback('email')">
     <div class="col-sm-12">
@@ -19,9 +25,12 @@
       <input type="text" class="form-control" id="email" placeholder="name@domain.com" formControlName="email">
       <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="isInvalidAndTouched('email')"></span>
       <field-control-error [show]="isInvalidAndTouched('email')" msgError="E-mail inválido."></field-control-error>
-      <field-control-error [show]="formulario.get('email')?.status === 'PENDING'" msgError="Validando e-mail..."></field-control-error>
-      <field-control-error [show]="formulario.get('email')?.status === 'VALID'" msgError="E-mail válido."></field-control-error>
-      <field-control-error [show]="formulario.get('email')?.hasError('emailInvalido')?true:false" msgError="E-mail já cadastrado!"></field-control-error>
+      <field-control-error [show]="formulario.get('email')?.status === 'PENDING'" msgError="Validando e-mail...">
+      </field-control-error>
+      <field-control-error [show]="formulario.get('email')?.status === 'VALID'" msgError="E-mail válido.">
+      </field-control-error>
+      <field-control-error [show]="formulario.get('email')?.hasError('emailInvalido')?true:false"
+        msgError="E-mail já cadastrado!"></field-control-error>
     </div>
   </div>
 
@@ -33,9 +42,12 @@
       <label class="control-label" for="confirmEmail">Confirmar E-mail</label>
     </div>
     <div class="col-sm-12">
-      <input type="text" class="form-control" id="confirmEmail" placeholder="name@domain.com" formControlName="confirmEmail">
-      <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="formulario.get('confirmEmail')?.hasError('equalsTo') ? true : null"></span>
-      <field-control-error [show]="formulario.get('confirmEmail')?.hasError('equalsTo') ? true : null" msgError="E-mails não são iguais."></field-control-error>
+      <input type="text" class="form-control" id="confirmEmail" placeholder="name@domain.com"
+        formControlName="confirmEmail">
+      <span class="glyphicon glyphicon-remove form-control-feedback"
+        *ngIf="formulario.get('confirmEmail')?.hasError('equalsTo') ? true : null"></span>
+      <field-control-error [show]="formulario.get('confirmEmail')?.hasError('equalsTo') ? true : null"
+        msgError="E-mails não são iguais."></field-control-error>
     </div>
   </div>
 
@@ -44,7 +56,7 @@
     <div class="form-group">
       <div class="col-md-3" [ngClass]="hasErrorAndFeedback('endereco.cep')">
         <label for="cep" class="control-label">CEP</label>
-        <input type="text" class="form-control" id="cep" formControlName="cep" (blur)="consultaCEP()">
+        <input type="text" class="form-control" id="cep" formControlName="cep">
         <span class="glyphicon glyphicon-remove form-control-feedback"
           *ngIf="isInvalidAndTouched('endereco.cep')"></span>
         <field-control-error [show]="cpfIsRequired('endereco.cep')" msgError="CEP é obrigatório.">

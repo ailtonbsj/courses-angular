@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { map, Observable, of } from 'rxjs';
+import { distinctUntilChanged, EMPTY, map, Observable, of, switchMap, tap } from 'rxjs';
 import { FormValidations } from '../shared/form-validations';
 import { EstadosBr } from '../shared/models/estados-br';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
@@ -74,6 +74,16 @@ export class DataFormComponent implements OnInit {
     this.cargos = this.dropDownService.getCargos();
     this.tecnologias = this.dropDownService.getTecnologias();
     this.newsletter = this.dropDownService.getNewsletter();
+
+    this.formulario.get('endereco.cep')?.statusChanges
+      .pipe(
+        distinctUntilChanged(),
+        tap(val => console.log('valor do CEP: ' + val)),
+        switchMap(status => status === 'VALID' ?
+          this.consultaCepService.consultaCEP(this.formulario.get('endereco.cep')?.value)
+          : EMPTY)
+      )
+      .subscribe(data => data ? this.popularForm(data) : {});
   }
 
   validarEmail(formControl: FormControl) {
@@ -123,10 +133,7 @@ export class DataFormComponent implements OnInit {
     let cep = this.formulario.get('endereco.cep')?.value;
     if (cep != null && cep !== '') {
       cep = cep.replace(/\D/g, '');
-      this.consultaCepService.consultaCEP(cep).subscribe(data => {
-        console.log(data);
-        this.popularForm(data);
-      });
+      this.consultaCepService.consultaCEP(cep).subscribe(data => this.popularForm(data));
     }
   }
 
@@ -170,6 +177,7 @@ export class DataFormComponent implements OnInit {
     Object.keys(formGroup.controls).map(fieldName => {
       const control = formGroup.get(fieldName);
       control?.markAsDirty();
+      control?.markAsTouched();
       if (control instanceof FormGroup) this.verificaValidacoesForm(control);
     });
   }

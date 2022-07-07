@@ -1,0 +1,10 @@
+<div class="form-group" [ngClass]="classCss">
+  <div class="col-sm-12">
+    <label [attr.for]="id">{{ label }}</label>
+  </div>
+  <div class="col-sm-12">
+    <input [type]="type" class="form-control" [id]="id" [readonly]="!!isReadOnly" [(ngModel)]="value">
+    <span class="glyphicon glyphicon-remove form-control-feedback" *ngIf="showError"></span>
+    <error-msg [label]="label" [control]="control"></error-msg>
+  </div>
+</div>
