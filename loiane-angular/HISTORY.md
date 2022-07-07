@@ -18,4 +18,7 @@ ng new rotas
 
 # Forms project
 ng new forms --routing
+
+# HTTP project
+ng new requests-http --routing --style=scss -S
 ```
