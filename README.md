@@ -6,7 +6,7 @@
 
 This is the source code of all projects I did in courses of Angular. This courses are videos in Udemy, books, youtube and tutoriais.
 
-## Angular 2
+## Angular 2+
 ![](https://img.shields.io/badge/status-in%20progress-blue)
 
 > Folder: loiane-angular
@@ -34,7 +34,7 @@ An online course of Angular 9 from [Udemy](https://www.udemy.com/course/angular-
 Creator: Leonardo Moura Leitao
 
 ## AngularJS
-![](https://img.shields.io/badge/status-in%20progress-blue)
+![](https://img.shields.io/badge/status-abandoned-red)
 
 > Folder: green.angularjs
 
@@ -43,7 +43,7 @@ An book called AngularJS by Brand Green and Shyam Seshadri.
 Creator: Brand Green and Shyam Seshadri
 
 ## AngularJS
-![](https://img.shields.io/badge/status-in%20progress-blue)
+![](https://img.shields.io/badge/status-abandoned-red)
 
 > Folder: branas.angularjs
 

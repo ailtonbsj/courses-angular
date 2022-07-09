@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CursosRoutingModule } from './cursos-routing.module';
 import { CursosListaComponent } from './cursos-lista/cursos-lista.component';
 import { CursosService } from './cursos.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { CursosService } from './cursos.service';
     HttpClientModule
   ],
   providers: [
-    CursosService
+    CursosService,
   ]
 })
 export class CursosModule { }
