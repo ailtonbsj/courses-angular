@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Observable, of, catchError, EMPTY, Subject } from 'rxjs';
+import { Observable, of, catchError, EMPTY, Subject, take, switchMap } from 'rxjs';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 import { Curso } from '../curso';
@@ -35,23 +35,14 @@ export class CursosListaComponent implements OnInit {
   }
 
   remove(id: number) {
-    this.selectedCurso = id;
-    this.deleteModalRef = this.modalService
-      .show(this.deleteModal, { class: 'modal-sm' });
-  }
-
-  onConfirmDelete() {
-    this.service.remove(this.selectedCurso).subscribe({
-      next: () => {
-        this.deleteModalRef.hide();
-        this.loadCursos();
-      },
+    const res$ = this.alertService.showConfirm('Confirmação','Tem certeza que quer excluir?');
+    res$.pipe(
+      take(1),
+      switchMap(res => res ? this.service.remove(id): EMPTY)
+    ).subscribe({
+      next: () => this.loadCursos(),
       error: e => this.alertService.showAlertDanger(e.message)
     });
-  }
-
-  onDeclineDelete() {
-    this.deleteModalRef.hide();
   }
 
   loadCursos() {
