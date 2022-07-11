@@ -47,6 +47,6 @@ Creator: Brand Green and Shyam Seshadri
 
 > Folder: branas.angularjs
 
-An [playlist from Youtube](https://www.youtube.com/playlist?list=PLQCmSnNFVYnTD5p2fR4EXmtlR6jQJMbPb) sobre AngularJS.
+An [playlist from Youtube](https://www.youtube.com/playlist?list=PLQCmSnNFVYnTD5p2fR4EXmtlR6jQJMbPb) about AngularJS.
 
 Creator: Rodrigo Branas

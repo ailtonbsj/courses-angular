@@ -16,4 +16,7 @@ ng g c unsubscribe-rxjs/poc-base
 ng g m shared
 
 npm i ngx-bootstrap --save --legacy-peer-deps
+
+ng g c cursos/cursos-form
+ng g g cursos/guards/curso-resolver
 ```

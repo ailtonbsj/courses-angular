@@ -6,7 +6,7 @@
     <div class="float-right">
       <button class="btn btn-primary" type="button" [routerLink]="['novo']" routerLinkActive="router-link-active">Novo
         Curso</button>
-        <button class="btn btn-secondary ml-1" type="button" (click)="loadCursos()">Atualizar</button>
+      <button class="btn btn-secondary ml-1" type="button" (click)="loadCursos()">Atualizar</button>
     </div>
   </div>
   <div class="card-body">
@@ -24,7 +24,7 @@
           <td>{{ curso.nome }}</td>
           <td>
             <span class="float-right">
-              <button class="btn btn-outline-warning mb-1 btn-sm">
+              <button class="btn btn-outline-warning mb-1 btn-sm" (click)="edit(curso.id)">
                 Atualizar
               </button>
               <button class="btn btn-outline-danger mb-1 ml-1 btn-sm" (click)="remove(curso.id)">
@@ -46,3 +46,11 @@
     </ng-template>
   </div>
 </div>
+
+<ng-template #deleteModal>
+  <div class="modal-body text-center">
+    <p>Tem certeza que quer excluir?</p>
+    <button class="btn btn-default" (click)="onConfirmDelete()">Sim</button>
+    <button class="btn btn-primary" (click)="onDeclineDelete()">Não</button>
+  </div>
+</ng-template>

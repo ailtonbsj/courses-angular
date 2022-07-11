@@ -5,12 +5,8 @@
       "nome": "Angular"
     },
     {
-      "nome": "Java",
-      "id": 2
-    },
-    {
-      "nome": "Angular Material",
-      "id": 3
+      "id": 2,
+      "nome": "Spring Framework"
     }
   ]
 }

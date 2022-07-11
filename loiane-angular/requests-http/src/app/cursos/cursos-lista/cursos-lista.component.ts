@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable, of, catchError, EMPTY, Subject } from 'rxjs';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 import { Curso } from '../curso';
 import { CursosService } from '../cursos.service';
@@ -12,22 +14,44 @@ import { CursosService } from '../cursos.service';
 })
 export class CursosListaComponent implements OnInit {
 
-  bsModalRef: BsModalRef = new BsModalRef;
-
   cursos$: Observable<Curso[]> = of();
   error$ = new Subject<boolean>();
+  selectedCurso: any;
 
-  constructor(private service: CursosService,
-    private modalService: BsModalService) {
+  constructor(
+    private service: CursosService,
+    private alertService: AlertModalService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private modalService: BsModalService
+  ) {
   }
+
+  deleteModalRef: BsModalRef = new BsModalRef;
+  @ViewChild('deleteModal') deleteModal: any;
 
   ngOnInit(): void {
     this.loadCursos();
   }
 
   remove(id: number) {
-    console.log(id);
-    this.service.remove(id).subscribe(console.log);
+    this.selectedCurso = id;
+    this.deleteModalRef = this.modalService
+      .show(this.deleteModal, { class: 'modal-sm' });
+  }
+
+  onConfirmDelete() {
+    this.service.remove(this.selectedCurso).subscribe({
+      next: () => {
+        this.deleteModalRef.hide();
+        this.loadCursos();
+      },
+      error: e => this.alertService.showAlertDanger(e.message)
+    });
+  }
+
+  onDeclineDelete() {
+    this.deleteModalRef.hide();
   }
 
   loadCursos() {
@@ -43,9 +67,11 @@ export class CursosListaComponent implements OnInit {
   }
 
   handleError() {
-    this.bsModalRef = this.modalService.show(AlertModalComponent);
-    this.bsModalRef.content.type = 'danger';
-    this.bsModalRef.content.message = 'Error ao carregar cursos. Tente novamente mais tarde.';
+    this.alertService.showAlertDanger('Error ao carregar cursos. Tente novamente mais tarde.');
+  }
+
+  edit(id: number) {
+    this.router.navigate(['editar', id], { relativeTo: this.route });
   }
 
 }
