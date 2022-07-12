@@ -5,7 +5,7 @@ import { Observable, of, catchError, EMPTY, Subject, take, switchMap } from 'rxj
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 import { Curso } from '../curso';
-import { CursosService } from '../cursos.service';
+import { Cursos2Service } from '../cursos2.service';
 
 @Component({
   selector: 'app-cursos-lista',
@@ -19,7 +19,7 @@ export class CursosListaComponent implements OnInit {
   selectedCurso: any;
 
   constructor(
-    private service: CursosService,
+    private service: Cursos2Service,
     private alertService: AlertModalService,
     private router: Router,
     private route: ActivatedRoute,
@@ -35,10 +35,10 @@ export class CursosListaComponent implements OnInit {
   }
 
   remove(id: number) {
-    const res$ = this.alertService.showConfirm('Confirmação','Tem certeza que quer excluir?');
+    const res$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que quer excluir?');
     res$.pipe(
       take(1),
-      switchMap(res => res ? this.service.remove(id): EMPTY)
+      switchMap(res => res ? this.service.remove(id) : EMPTY)
     ).subscribe({
       next: () => this.loadCursos(),
       error: e => this.alertService.showAlertDanger(e.message)

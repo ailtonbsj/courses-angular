@@ -8,6 +8,7 @@ import { CursosService } from './cursos.service';
 import { CursosFormComponent } from './cursos-form/cursos-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CursoResolverGuard } from './guards/curso-resolver.guard';
+import { Cursos2Service } from './cursos2.service';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { CursoResolverGuard } from './guards/curso-resolver.guard';
   ],
   providers: [
     CursosService,
+    Cursos2Service,
     CursoResolverGuard
   ]
 })
