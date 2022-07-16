@@ -10,3 +10,7 @@
 <div class="mt-1">
   <button class="btn btn-primary" (click)="onSubmit()" [disabled]="files.size === 0">Upload</button>
 </div>
+<div class="mt-1">
+  <button class="btn btn-warning" (click)="downloadPDF()">Download PDF</button>
+  <button class="btn btn-warning ml-1" (click)="downloadXLS()">Download Excel</button>
+</div>

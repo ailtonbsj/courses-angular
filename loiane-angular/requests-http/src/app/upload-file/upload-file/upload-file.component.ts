@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UploadFileService } from '../upload-file.service';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { filterResponse, uploadProgress } from '../../shared/rxjs-operator'
 
 @Component({
   selector: 'app-upload-file',
@@ -29,15 +30,24 @@ export class UploadFileComponent implements OnInit {
   onSubmit() {
     if (this.files.size > 0) {
       this.service.upload(this.files, '/api/upload')
-        .subscribe((res: HttpEvent<Object>) => {
-          if (res.type === HttpEventType.UploadProgress) {
-            this.progress = Math.trunc(100 * res.loaded / (res.total || 1));
-          } else if (res.type === HttpEventType.Response) {
-            this.progress = 0;
-            console.log('Sucesso!');
-          }
-        });
+        .pipe(
+          uploadProgress(progress => this.progress = progress),
+          filterResponse()
+        )
+        .subscribe((res) => this.progress = 0);
     }
+  }
+
+  downloadPDF() {
+    this.service.download('/api/downloadPDF').subscribe((res: any) => {
+      this.service.handleFile(res, 'report.pdf');
+    });
+  }
+
+  downloadXLS() {
+    this.service.download('/api/downloadXLS').subscribe((res: any) => {
+      this.service.handleFile(res, 'report.xlsx');
+    });
   }
 
 }

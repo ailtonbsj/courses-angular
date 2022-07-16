@@ -28,4 +28,7 @@ mkdir server
 cd server
 npm init -y
 npm i express body-parser connect-multiparty cors
+
+ng g m reactive-search --routing
+ng g c reactive-search/lib-search
 ```
