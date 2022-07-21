@@ -1,0 +1,10 @@
+<main class="container">
+  <div class="bg-light p-5 rounded">
+    <h1>Welcome {{ user.name }}</h1>
+    <p class="lead" *ngIf="user.id === 0; else userInfo">JWT using Angular and Laravel.</p>
+    <ng-template #userInfo>
+      <p>{{ user.email }}</p>
+      <p>{{ user.created_at | date }}</p>
+    </ng-template>
+  </div>
+</main>

@@ -6,8 +6,17 @@
 
 This is the source code of all projects I did in courses of Angular. This courses are videos in Udemy, books, youtube and tutoriais.
 
-## Angular 2+
+## Angular JWT Authentication
 ![](https://img.shields.io/badge/status-in%20progress-blue)
+
+> Folder: angular-jwt
+
+Tutorials from YT about JWT and Angular.
+
+Creator: 
+
+## Angular 2+
+![](https://img.shields.io/badge/status-completed-brightgreen)
 
 > Folder: loiane-angular
 
