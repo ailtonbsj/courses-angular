@@ -6,14 +6,23 @@
 
 This is the source code of all projects I did in courses of Angular. This courses are videos in Udemy, books, youtube and tutoriais.
 
-## Angular JWT Authentication
+## Laravel and Angular - API Authentication with Laravel Passport
 ![](https://img.shields.io/badge/status-in%20progress-blue)
 
-> Folder: angular-jwt
+> Folder: angular-jwt-with-laravel-passport
 
-Tutorials from YT about JWT and Angular.
+Tutorial from Youtube about JWT with Angular and Laravel Passport.
 
-Creator: 
+Creator: [My IOT Lab Channel](https://youtube.com/playlist?list=PL397yT3D1n9ipqiMZug6mdPIczG2fmfjK)
+
+## Angular & Laravel JWT Authentication
+![](https://img.shields.io/badge/status-completed-brightgreen)
+
+> Folder: angular-jwt-with-laravel-sanctum
+
+Tutorial from Youtube about JWT with Angular and Laravel Sanctum.
+
+Creator: [Scalable Scripts Channel](https://youtube.com/playlist?list=PLlameCF3cMEtVCB8awarHu1NjIyEX0Va9)
 
 ## Angular 2+
 ![](https://img.shields.io/badge/status-completed-brightgreen)
