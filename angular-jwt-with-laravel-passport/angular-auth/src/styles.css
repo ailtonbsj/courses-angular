@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import '~icheck-bootstrap/icheck-bootstrap.min.css';
+
 .cursor-pointer {
   cursor: pointer;
+}
+
+.page-withmenu {
+  height: calc(100vh - 56px) !important;
 }
