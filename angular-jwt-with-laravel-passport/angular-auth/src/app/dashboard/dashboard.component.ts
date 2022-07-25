@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,18 +11,12 @@ export class DashboardComponent implements OnInit {
 
   user: any = { name: '', email: '', created_at: '' };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthenticationService) { }
 
   ngOnInit(): void {
-    const user = JSON.parse(sessionStorage.getItem('user') || '{}');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${user.token}`
-    });
-    this.http.get('http://localhost:8000/api/user', {
-      headers: headers
-    }).subscribe({
+    this.auth.user().subscribe({
       next: res => this.user = res,
-      error: err => console.log(err)
+      error: err => this.auth.emitLoginState(false)
     });
   }
 

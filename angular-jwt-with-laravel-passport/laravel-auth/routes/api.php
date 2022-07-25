@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\AuthenticationController;
+use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,14 +23,18 @@ use Symfony\Component\HttpFoundation\Response;
 //     return $request->user();
 // });
 
-Route::middleware('auth:api')->get('/user', function (Request $req) {
-    return Auth::user();
-});
+// Route::get('users', function () {
+//     return User::all();
+// });
 
-Route::get('users', function () {
-    return User::all();
+Route::middleware('auth:api')->group(function () {
+    Route::post('/logout', [AuthenticationController::class, 'logout']);
+    Route::get('/user', fn (Request $req) => Auth::user());
 });
 
 Route::group(['namespace' => 'Api\Auth'], function () {
     Route::post('/login', [AuthenticationController::class, 'login']);
+    Route::post('/register', [AuthenticationController::class, 'register']);
+    Route::post('/forgot', [ForgotPasswordController::class, 'forgot']);
+    Route::post('/reset', [ForgotPasswordController::class, 'reset']);
 });

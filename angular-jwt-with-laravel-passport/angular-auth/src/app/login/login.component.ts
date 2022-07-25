@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private router: Router, private auth: AuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -18,14 +19,12 @@ export class LoginComponent implements OnInit {
   onSubmit(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    this.http.post('http://localhost:8000/api/login', {
-      email: email, password: password
-    }).subscribe({
+    this.auth.login(email, password).subscribe({
       next: res => {
-        sessionStorage.setItem('user', JSON.stringify(res))
+        localStorage.setItem('user', JSON.stringify(res))
         this.router.navigate(['/dashboard']);
       },
-      error: err => console.log(err)
+      error: e => alert(e.error.message)
     });
   }
 
