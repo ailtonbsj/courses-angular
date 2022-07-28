@@ -1,0 +1,20 @@
+<div class="cards-container">
+  <spa-mycard
+    description="This is a dog."
+    [amount]="999"
+    name="Doggit"
+    pic="https://material.angular.io/assets/img/examples/shiba2.jpg"
+    (share)="onShare($event)"></spa-mycard>
+  <spa-mycard
+    description="This is a wizard cat."
+    [amount]="catLikes"
+    name="Cat Potter"
+    pic="../../assets/catpotter.jpg"
+    (share)="onShare($event)"></spa-mycard>
+</div>
+<div>
+  <h3>
+    Last shared card: {{ lastShare }} / Likes: {{ totalLikes }}
+  </h3>
+</div>
+<button mat-raised-button color="warn" (click)="onLikeCat()">Like cat (WARN!)</button>

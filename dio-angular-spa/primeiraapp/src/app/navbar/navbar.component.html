@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="example-spacer"></span>
+  <button mat-button routerLink="home" routerLinkActive="active" #homeMenu="routerLinkActive"
+    [color]="homeMenu.isActive && 'primary'">Home</button>
+  <button mat-button routerLink="diretivas" routerLinkActive="active" #directiveMenu="routerLinkActive"
+    [color]="directiveMenu.isActive && 'primary'">Diretivas</button>
+  <button mat-button routerLink="event-emitters" routerLinkActive="active" #eventEmittersMenu="routerLinkActive"
+    [color]="eventEmittersMenu.isActive && 'primary'">EventEmitters</button>
+  <button mat-icon-button class="example-icon favorite-icon" (click)="about()">
+    <mat-icon>favorite</mat-icon>
+  </button>
+</mat-toolbar>

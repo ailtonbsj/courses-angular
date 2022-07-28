@@ -6,15 +6,6 @@
 
 This is the source code of all projects I did in courses of Angular. This courses are videos in Udemy, books, youtube and tutoriais.
 
-## Trabalhando com Páginas SPA com Angular
-![](https://img.shields.io/badge/status-in%20progress-blue)
-
-> Folder: dio-angular-spa
-
-An online course of Angular from [Digital Innovation One](https://web.dio.me/course/trabalhando-com-paginas-spa-com-angular/learning/f91b184b-6140-471d-b764-9d3ba0ab8186).
-
-Creator: Camila Ribeiro
-
 ## JSON Web Token with Spring Security And Angular
 ![](https://img.shields.io/badge/status-in%20progress-blue)
 
@@ -23,6 +14,15 @@ Creator: Camila Ribeiro
 Course of Spring Security using Angular as frontend.
 
 Creator: [Get Arrays](https://youtu.be/FMGQsW_B9Rs)
+
+## Trabalhando com Páginas SPA com Angular
+![](https://img.shields.io/badge/status-completed-brightgreen)
+
+> Folder: dio-angular-spa
+
+An online course of Angular from [Digital Innovation One](https://web.dio.me/course/trabalhando-com-paginas-spa-com-angular/learning/f91b184b-6140-471d-b764-9d3ba0ab8186).
+
+Creator: Camila Ribeiro
 
 ## Laravel and Angular - API Authentication with Laravel Passport
 ![](https://img.shields.io/badge/status-completed-brightgreen)

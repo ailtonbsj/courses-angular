@@ -1,0 +1,46 @@
+<button mat-raised-button color="primary" class="mb-8" (click)="showTable()">Mostra Tabela comum</button>
+
+<table mat-table [dataSource]="alunos" class="mat-elevation-z3" *ngIf="isShowTable">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="grade">
+    <th mat-header-cell *matHeaderCellDef> Nota </th>
+    <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef> Serie </th>
+    <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div *ngIf="!isShowTable">
+  <table border="1">
+    <thead>
+      <th>Nome</th>
+      <th>Nota</th>
+      <th>Ano</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of alunos">
+        <td>{{ row.name }}</td>
+        <td>{{ row.grade }}</td>
+        <td>{{ row.year }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,25 @@
+<h1>Data binding</h1>
+
+<h2>Interpolação</h2>
+
+<p>O seguinte texto vem de uma variável: <em>{{ variavel }}.</em></p>
+
+<h2>Property binding</h2>
+
+<p [style.color]="cor">A cor do texto tem de uma variável.</p>
+
+<h2>Event Binding</h2>
+
+<p (click)="onClick()">Clique aqui e veja um evento.</p>
+
+<h2>Two-way Data Binding</h2>
+
+<mat-form-field appearance="fill">
+    <mat-label>Dado modelo: </mat-label>
+    <input matInput type="text" [(ngModel)]="varParaTwoWay">
+    <button *ngIf="varParaTwoWay" matSuffix mat-icon-button aria-label="Clear" (click)="varParaTwoWay=''">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
+
+<p>Valor do campo: <b>{{ varParaTwoWay }}</b>.</p>

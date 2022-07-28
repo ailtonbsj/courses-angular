@@ -1,0 +1,6 @@
+.cards-container {
+  display: flex;
+}
+.cards-container spa-mycard {
+  margin: 5px;
+}
