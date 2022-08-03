@@ -1,0 +1,12 @@
+.newList {
+  background-color: lightslategrey;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.todoList {
+  background-color: darkolivegreen;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+}
