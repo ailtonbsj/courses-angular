@@ -15,6 +15,15 @@ Course of Spring Security using Angular as frontend.
 
 Creator: [Get Arrays](https://youtu.be/FMGQsW_B9Rs)
 
+## Samples with Angular
+![](https://img.shields.io/badge/status-in%20progress-blue)
+
+> Folder: samples-angular
+
+Some random samples of Angular components and tricks.
+
+Creator: ailtonbsj
+
 ## Trabalhando com Páginas SPA com Angular
 ![](https://img.shields.io/badge/status-completed-brightgreen)
 
