@@ -1,5 +1,10 @@
 h3 {
   padding: 0;
+  display: flex;
+}
+
+h3 .spacer {
+  flex: 1 1 auto;
 }
 
 ul {
@@ -10,6 +15,6 @@ ul li {
   margin: 5px 0 ;
 }
 
-ul li a {
+ul li a, h3 a {
   cursor: pointer;
 }

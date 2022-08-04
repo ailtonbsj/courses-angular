@@ -43,4 +43,20 @@ export class ItemListComponent {
     }
   }
 
+  async editList(id: number, text: string) {
+    if (id !== -1) {
+      let newText = prompt('Edite seu texto:', text);
+      if (newText) {
+        await db.todoLists.put({ title: newText, id: id }, id);
+      }
+    }
+  }
+
+  async removeList(id: number) {
+    if (id !== -1) {
+      const ids = await db.todoItems.where('todoListId').equals(id).primaryKeys();
+      await db.todoItems.bulkDelete(ids);
+      await db.todoLists.delete(id);
+    }
+  }
 }

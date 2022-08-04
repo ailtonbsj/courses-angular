@@ -1,4 +1,4 @@
-<h3>{{ todoList.title }}</h3>
+<h3>{{ todoList.title }}<span class="spacer"></span><a (click)="editList(todoList.id || -1, todoList.title)">✏️</a><a (click)="removeList(todoList.id || -1)">🗑️</a></h3>
 
 <!-- Adding item form -->
 <label>
