@@ -20,7 +20,7 @@ Creator: [Get Arrays](https://youtu.be/FMGQsW_B9Rs)
 
 > Folder: samples-angular
 
-Some random samples of Angular components and tricks.
+Todo List with DexieJS, Barcode Scanner with Quagga.
 
 Creator: ailtonbsj
 
